@@ -48,7 +48,7 @@ public class MusicListComponent extends Component {
         this.musicList.setModel(musicListModel);
         this.musicList.setPreferredSize(new Dimension(500, 40));
         this.musicList.addListSelectionListener(new MusicListListener());
-        this.musicList.setBackground(new Color(0xFF505050));
+        this.musicList.setBackground(new Color(0xFF292929));
 
         // set button sizes
         this.playButton.setPreferredSize(new Dimension(this.buttonWidth, this.buttonHeight));
