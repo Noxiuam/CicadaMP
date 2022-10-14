@@ -38,7 +38,8 @@ public class DiscordRPCController extends Controller {
         boolean playing = CicadaMP.getInstance().getAudioManager().isPlaying();
         boolean looping = CicadaMP.getInstance().getAudioManager().isLooping();
         String song = CicadaMP.getInstance().getAudioManager().getCurrentlySelectedTrack();
-        String state = playing ? looping ? "Looping c" : "C" + "urrent track:" : "Idling";
+        String state = playing ? (looping ? "Looping" : "Current") + " track:" : "Idling";
+
 
         if (song == null) {
             state = "Just started the application";
