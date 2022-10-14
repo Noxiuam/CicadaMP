@@ -47,10 +47,8 @@ public class AudioManager {
     public void loopPlayer() {
 
         if (!looping) {
-            //clip.loop(Clip.LOOP_CONTINUOUSLY);
             this.looping = true;
-        } else if (clip != null) {
-            clip.loop(0);
+        } else {
             this.looping = false;
         }
 

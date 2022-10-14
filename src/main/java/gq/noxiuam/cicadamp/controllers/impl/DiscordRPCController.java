@@ -54,6 +54,8 @@ public class DiscordRPCController extends Controller {
 
     @Override
     public void onLoad() {
-        connectToDiscord();
+        new Thread(() -> {
+            connectToDiscord();
+        }).start();
     }
 }

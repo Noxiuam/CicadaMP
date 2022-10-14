@@ -1,6 +1,8 @@
 package gq.noxiuam.cicadamp.audio.event;
 
+import com.sun.javafx.scene.traversal.SubSceneTraversalEngine;
 import gq.noxiuam.cicadamp.CicadaMP;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -19,6 +21,8 @@ public class MusicListListener implements ListSelectionListener {
 
         if (sourceModel == CicadaMP.getInstance().getMainWindow().getMusicListComponent().getMusicList()) {
             String songName = sourceModel.getSelectedValue().toString();
+            songName = StringUtils.substringBefore(songName, " (");
+
             CicadaMP.getInstance().audioManager.setCurrentlySelectedTrack(songName);
         }
 

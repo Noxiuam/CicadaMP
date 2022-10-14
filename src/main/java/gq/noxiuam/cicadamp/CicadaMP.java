@@ -3,7 +3,7 @@ package gq.noxiuam.cicadamp;
 import com.github.weisj.darklaf.LafManager;
 import com.github.weisj.darklaf.theme.DarculaTheme;
 import gq.noxiuam.cicadamp.audio.AudioManager;
-import gq.noxiuam.cicadamp.controllers.DiscordRPCController;
+import gq.noxiuam.cicadamp.controllers.impl.DiscordRPCController;
 import gq.noxiuam.cicadamp.gui.MusicPlayerGui;
 import lombok.Getter;
 
