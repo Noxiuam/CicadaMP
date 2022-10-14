@@ -28,6 +28,9 @@ public class AudioManager {
             this.closeClip();
         }
 
+        if (this.currentlySelectedTrack == null)
+            return;
+
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(new BufferedInputStream(CicadaMP.class.getClassLoader().getResourceAsStream(this.currentlySelectedTrack + ".wav")));
         clip = AudioSystem.getClip();
         clip.open(audioInput);
