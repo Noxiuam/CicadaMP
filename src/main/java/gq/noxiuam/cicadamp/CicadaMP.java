@@ -32,6 +32,7 @@ public class CicadaMP {
         LafManager.install(new DarculaTheme());
 
         JFrame frame = this.mainWindow.getFrame();
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
