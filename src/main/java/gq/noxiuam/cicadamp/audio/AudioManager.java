@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.io.BufferedInputStream;
 
 /**
  * @author Noxiuam
@@ -26,7 +27,7 @@ public class AudioManager {
             clip.close();
         }
 
-        AudioInputStream audioInput = AudioSystem.getAudioInputStream(CicadaMP.class.getClassLoader().getResourceAsStream(this.currentlySelectedTrack + ".wav"));
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(new BufferedInputStream(CicadaMP.class.getClassLoader().getResourceAsStream(this.currentlySelectedTrack + ".wav")));
         clip = AudioSystem.getClip();
         clip.open(audioInput);
         clip.start();
