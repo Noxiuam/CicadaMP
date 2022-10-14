@@ -18,6 +18,7 @@ import java.io.BufferedInputStream;
 public class AudioManager {
 
     @Setter private String currentlySelectedTrack;
+
     private Clip clip;
 
     private boolean looping;
@@ -38,6 +39,8 @@ public class AudioManager {
 
         if (this.looping)
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        updateLabel();
     }
 
     public void stopPlaying() {
@@ -51,8 +54,12 @@ public class AudioManager {
 
         if (!looping) {
             this.looping = true;
+            if (clip != null)
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
         } else {
             this.looping = false;
+            if (clip != null)
+                clip.loop(0);
         }
 
         this.updateLabel();
