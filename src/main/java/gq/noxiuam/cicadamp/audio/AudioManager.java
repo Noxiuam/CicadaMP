@@ -20,35 +20,58 @@ public class AudioManager {
     @Setter private String currentlySelectedTrack;
     private Clip clip;
 
+    private boolean looping;
+
     @SneakyThrows
     public void playCurrentTrack() {
         if (isPlaying()) {
-            clip.stop();
-            clip.close();
+            this.closeClip();
         }
 
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(new BufferedInputStream(CicadaMP.class.getClassLoader().getResourceAsStream(this.currentlySelectedTrack + ".wav")));
         clip = AudioSystem.getClip();
         clip.open(audioInput);
         clip.start();
+
+        if (this.looping)
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void stopPlaying() {
         if (isPlaying()) {
-            clip.stop();
-            clip.close();
-            clip = null;
+            this.closeClip();
             this.updateLabel();
         }
     }
 
+    public void loopPlayer() {
+
+        if (!looping) {
+            //clip.loop(Clip.LOOP_CONTINUOUSLY);
+            this.looping = true;
+        } else if (clip != null) {
+            clip.loop(0);
+            this.looping = false;
+        }
+
+        this.updateLabel();
+    }
+
     public void updateLabel() {
         boolean playing = this.clip != null;
-        CicadaMP.getInstance().getMainWindow().getMusicListComponent().getCurrentTrackLabel().setText(playing ? "Now Playing: " + this.currentlySelectedTrack : "No track playing");
+        CicadaMP.getInstance().getMainWindow().getMusicListComponent().getCurrentTrackLabel().setText(
+                playing ? "Now" + (this.looping ? " Looping" : " Playing") + ": " + this.currentlySelectedTrack : "No track playing"
+        );
     }
 
     public boolean isPlaying() {
         return this.clip != null;
+    }
+
+    public void closeClip() {
+        clip.stop();
+        clip.close();
+        clip = null;
     }
 
 }

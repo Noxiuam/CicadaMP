@@ -4,7 +4,6 @@ import gq.noxiuam.cicadamp.CicadaMP;
 import gq.noxiuam.cicadamp.audio.AudioManager;
 import gq.noxiuam.cicadamp.gui.component.MusicListComponent;
 
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,14 +26,13 @@ public class MusicListButtonListener implements ActionListener {
 
         if (isPlayButton) {
             audioManager.playCurrentTrack();
-            CicadaMP.getInstance().getDiscordRPCController().updateSong();
         } else if (isStopButton) {
             audioManager.stopPlaying();
-            CicadaMP.getInstance().getDiscordRPCController().updateSong();
         } else if (isLoopButton) {
-            CicadaMP.getInstance().getAudioManager().getClip().loop(Clip.LOOP_CONTINUOUSLY);
+            audioManager.loopPlayer();
         }
 
+        CicadaMP.getInstance().getDiscordRPCController().updateSong();
         audioManager.updateLabel();
     }
 }
